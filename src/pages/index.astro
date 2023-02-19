@@ -11,14 +11,6 @@ const badgeItems = [
 		iconUrl: '/vue_icon.png',
 	},
 	{
-		label: 'Inertiajs',
-		iconUrl: '/react_icon.png',
-	},
-	{
-		label: 'Laravel',
-		iconUrl: '/react_icon.png',
-	},
-	{
 		label: 'Svelte',
 		iconUrl: '/svelte_icon.png',
 	},
@@ -27,16 +19,12 @@ const badgeItems = [
 		iconUrl: '/astro_icon.png',
 	},
 	{
-		label: 'Symfony',
-		iconUrl: '/react_icon.png',
-	},
-	{
-		label: 'Supabase',
-		iconUrl: '/react_icon.png',
-	},
-	{
 		label: 'Nextjs',
 		iconUrl: '/nextjs_icon.png',
+	},
+	{
+		label: 'Laravel',
+		iconUrl: '/laravel_icon.png',
 	},
 	{
 		label: 'Nuxtjs',
@@ -45,7 +33,7 @@ const badgeItems = [
 ]
 ---
 <Layout>
-	<div class="pt-10">
+	<div class="pt-2">
 		<h1 class="text-5xl font-bold">Hi there 👋 </h1>
 
 		<p class="pt-5 leading-8 text-gray-700 text-lg max-w-2xl">
@@ -69,19 +57,19 @@ const badgeItems = [
 
 	</div>
 
-	<div class="mt-3">
+	<!-- <div class="mt-3 max-w-2xl">
 		<span class="block font-medium text-lg">
 			Here is a list of the technologies I am familiar with:
 		</span>
-		<div class="flex flex-row gap-2 flex-wrap">
+		<div class="flex flex-row gap-2 flex-wrap mt-2">
 			{
 				badgeItems.map((item) => (
-					<span class="inline-flex pl-2 pr-3 py-1 rounded-full bg-gray-50 border-gray-200 gap-x-2 border font-medium items-center">
+					<span class="inline-flex pl-2 pr-3 py-1 rounded-full bg-gray-50 border-gray-200 gap-x-2 border items-center">
 						<img src={item.iconUrl} class="h-5 flex-shrink-0">
 						{item.label}
 						</span>
 				))
 			}
 		</div>
-	</div>
+	</div> -->
 </Layout>

@@ -34,30 +34,16 @@ const links = [
   </head>
   <body>
     <header
-      class="max-w-7xl w-full mx-auto px-5 sm:px-8 2xl:px-0 flex flex-row items-center pt-20"
+      class="max-w-7xl w-full mx-auto px-5 sm:px-8 2xl:px-0 flex flex-col items-start justify-start pt-14"
     >
-      <nav
-        class="flex flex-row items-center gap-x-5 py-5 font-semibold tracking-wide text-gray-900"
-      >
-        {
-          links.map((link) => 
-            (<a
-              class={
-                pathname === link.href
-                  ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-1 after:bg-black after:w-full"
-                  : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-1 after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
-              }
-              href={link.href}
-            >
-              {link.name}
-            </a>)
-          )
-        }
-      </nav>
-    </header>
+    
     <div
-      class="flex flex-row max-w-7xl w-full mx-auto px-5 sm:px-8 2xl:px-0 items-center gap-x-3"
+      class="flex flex-row items-center gap-x-3"
     >
+
+    <div class="w-14 h-14 bg-black rounded-full shrink-0">
+
+    </div>
       <a class="text-gray-800 h-6 w-6" href="https://www.linkedin.com/in/vincent-schilling-758246251/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,6 +78,26 @@ const links = [
         >
       </a>
     </div>
+      <nav
+        class="flex flex-row items-center gap-x-5 py-5 font-semibold tracking-wide text-gray-900"
+      >
+        {
+          links.map((link) => 
+            (<a
+              class={
+                pathname === link.href
+                  ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-1 after:bg-black after:w-full"
+                  : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-1 after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
+              }
+              href={link.href}
+            >
+              {link.name}
+            </a>)
+          )
+        }
+      </nav>
+    </header>
+    
     <main class="max-w-7xl w-full mx-auto px-5 sm:px-8 2xl:px-0 pt-8">
       <slot />
     </main>
