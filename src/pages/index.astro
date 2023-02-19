@@ -1,0 +1,87 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const badgeItems = [
+	{
+		label: 'React',
+		iconUrl: '/react_icon.png',
+	},
+	{
+		label: 'Vue',
+		iconUrl: '/vue_icon.png',
+	},
+	{
+		label: 'Inertiajs',
+		iconUrl: '/react_icon.png',
+	},
+	{
+		label: 'Laravel',
+		iconUrl: '/react_icon.png',
+	},
+	{
+		label: 'Svelte',
+		iconUrl: '/svelte_icon.png',
+	},
+	{
+		label: 'Astro',
+		iconUrl: '/astro_icon.png',
+	},
+	{
+		label: 'Symfony',
+		iconUrl: '/react_icon.png',
+	},
+	{
+		label: 'Supabase',
+		iconUrl: '/react_icon.png',
+	},
+	{
+		label: 'Nextjs',
+		iconUrl: '/nextjs_icon.png',
+	},
+	{
+		label: 'Nuxtjs',
+		iconUrl: '/nuxtjs_icon.webp',
+	}
+]
+---
+<Layout>
+	<div class="pt-10">
+		<h1 class="text-5xl font-bold">Hi there 👋 </h1>
+
+		<p class="pt-5 leading-8 text-gray-700 text-lg max-w-2xl">
+			My name is Vincent Dorian. I am a <strong>Full-stack developer</strong> building stuff that I like.
+			When I got my first job after graduating in 2021, I started working in web development. Since then my work has become my hobby and passion.
+		</p>
+
+		<p class="pt-5 leading-8 text-gray-700 text-lg max-w-2xl">
+			I have full time working experience in the languages PHP and Javascript, working with different frameworks like React, Vue, Svelte and more.
+			<strong>Inertiajs</strong> and <strong>Laravel</strong> are my tools of choice to build my backends and I love working with <strong>Tailwindcss.</strong>
+		</p>
+
+		<p class="pt-5 leading-8 text-gray-700 text-lg max-w-2xl">
+			Feel free to stay a little while, if you want to find out more <a href="/about-me"><strong class="underline">about me</strong></a>. In my <a href="/blog"><strong class="underline">my blog</strong></a> I am reflecting on some of the things, I encounter in my free time. 
+			The processes of my projects are documented in my <a href="/journal"><strong class="underline">journal.</strong></a>
+		</p>
+
+		<p class="pt-5 leading-8 text-gray-700 text-lg max-w-2xl">
+			If you would like to get in touch, you can contact me on <strong class="underline"><a href="mailto:hi@vincentdorian.me">hi@vincentdorian.me</a></strong> or connect with me on social media.
+						</p>
+
+	</div>
+
+	<div class="mt-3">
+		<span class="block font-medium text-lg">
+			Here is a list of the technologies I am familiar with:
+		</span>
+		<div class="flex flex-row gap-2 flex-wrap">
+			{
+				badgeItems.map((item) => (
+					<span class="inline-flex pl-2 pr-3 py-1 rounded-full bg-gray-50 border-gray-200 gap-x-2 border font-medium items-center">
+						<img src={item.iconUrl} class="h-5 flex-shrink-0">
+						{item.label}
+						</span>
+				))
+			}
+		</div>
+	</div>
+</Layout>
