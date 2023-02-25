@@ -2,7 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 
 ---
-<Layout>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Vincent Dorian</title>
+  </head>
+  <body>
     <div class="w-full h-full flex flex-row justify-center items-center">
         <div class="max-w-3xl">
             <h1 class="text-left font-bold text-2xl sm:text-5xl">
@@ -14,4 +24,5 @@ import Layout from "../layouts/Layout.astro";
             </p>
         </div>
     </div>
-</Layout>
+</body>
+</html>
