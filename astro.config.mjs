@@ -13,8 +13,14 @@ import vercel from "@astrojs/vercel/edge";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), mdx()],
+  integrations: [tailwind(), react(), mdx(), sitemap(
+    { customPages: ['https://vincentdorian.me/','https://vincentdorian.me/blog'] }
+  )],
+  site: 'https://vincentdorian.me',
   output: 'server',
   adapter: vercel()
 });
