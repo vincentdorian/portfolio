@@ -16,10 +16,13 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
+import robotsTxt from "astro-robots-txt";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), mdx(), sitemap(
-    { customPages: ['https://vincentdorian.me/','https://vincentdorian.me/blog'] }
-  )],
+  integrations: [tailwind(), react(), mdx(), sitemap({
+    customPages: ['https://vincentdorian.me/', 'https://vincentdorian.me/blog']
+  }), robotsTxt()],
   site: 'https://vincentdorian.me',
   output: 'server',
   adapter: vercel()
