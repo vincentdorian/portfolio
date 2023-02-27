@@ -4,7 +4,13 @@ import Layout from "../../layouts/Layout.astro";
 const posts = await Astro.glob('./*.md')
 ---
 <Layout>
+    <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-5xl font-bold">I write ✍️</h1>
 
+		<p class="text-base sm:text-lg mt-5">
+            	
+        </p>
+    </div>
     <ul>
         {
             posts.map(p => (
