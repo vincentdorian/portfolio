@@ -2300,6 +2300,17 @@ async function renderPage$1(result, componentFactory, props, children, streaming
   return factoryReturnValue;
 }
 
+function __astro_tag_component__(Component, rendererName) {
+  if (!Component)
+    return;
+  if (typeof Component !== "function")
+    return;
+  Object.defineProperty(Component, Renderer, {
+    value: rendererName,
+    enumerable: false,
+    writable: false
+  });
+}
 function spreadAttributes(values, _name, { class: scopedClassName } = {}) {
   let output = "";
   if (scopedClassName) {
@@ -3383,4 +3394,4 @@ var server_default = {
   renderToStaticMarkup
 };
 
-export { App as A, Fragment as F, createComponent as a, addAttribute as b, createAstro as c, renderHead as d, renderSlot as e, renderComponent as f, createVNode as g, deserializeManifest as h, maybeRenderHead as m, renderTemplate as r, server_default as s };
+export { App as A, Fragment as F, __astro_tag_component__ as _, createComponent as a, addAttribute as b, createAstro as c, renderHead as d, renderSlot as e, renderComponent as f, createVNode as g, deserializeManifest as h, maybeRenderHead as m, renderTemplate as r, server_default as s };

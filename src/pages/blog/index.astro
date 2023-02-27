@@ -1,25 +1,27 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const posts = await Astro.glob('./*.md')
+const posts = await Astro.glob('./*.mdx')
 ---
 <Layout>
     <div class="max-w-3xl">
-        <h1 class="text-3xl sm:text-5xl font-bold">I write ✍️</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold">I write ✍️</h1>
 
 		<p class="text-base sm:text-lg mt-5">
-            	
+            I share some of the things I encounter during my projects. If you like my stuff, I would be happy to hear from you and connect (if you don't - feel free to criticize and let me know why).
         </p>
-    </div>
-    <ul>
+    <ul class="mt-5">
         {
             posts.map(p => (
                 <li>
-                    {
-                        p.frontmatter.title
-                    }
+                    <a class="flex flex-col items-start" href={p.frontmatter.url}>
+                    <span class="text-lg font-semibold">{p.frontmatter.title}</span>
+                    <span class="text-gray-600">{p.frontmatter.date}</span>
+                    </a>
                 </li>
             ))
         }
     </ul>
+</div>
+
 </Layout>

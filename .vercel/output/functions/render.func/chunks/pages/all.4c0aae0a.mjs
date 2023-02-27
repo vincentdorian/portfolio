@@ -1,4 +1,4 @@
-/* empty css                              */import { c as createAstro, a as createComponent, r as renderTemplate, b as addAttribute, d as renderHead, e as renderSlot, f as renderComponent, m as maybeRenderHead, g as createVNode, F as Fragment } from '../astro.462c8527.mjs';
+/* empty css                              */import { c as createAstro, a as createComponent, r as renderTemplate, b as addAttribute, d as renderHead, e as renderSlot, f as renderComponent, m as maybeRenderHead, _ as __astro_tag_component__, F as Fragment, g as createVNode } from '../astro.846112cf.mjs';
 import 'html-escaper';
 
 const $$Astro$5 = createAstro("https://vincentdorian.me");
@@ -85,7 +85,7 @@ const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
   Astro2.self = $$Index$2;
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl">
-		<h1 class="text-3xl sm:text-5xl font-bold">Hi there 👋 </h1>
+		<h1 class="text-3xl sm:text-4xl font-bold">Hi there 👋 </h1>
 
 		<p class="text-base sm:text-lg mt-5">
 			My name is Vincent. I am a <strong>full-stack developer</strong> building <strong>fast, reliable and easy-to-use web applications.</strong>
@@ -94,8 +94,7 @@ const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
 		</p>
 
 		<p class="text-base sm:text-lg mt-5">
-			I have a well-founded proficiencies with <strong>Javascript</strong> and <strong>PHP</strong> and experience with modern rendering frameworks like <strong>Svelte, React, Vue and Astro.</strong> 
-			Furthermore, I have collected advanced knowledge about many technologies and meta-frameworks like <strong>NextJS, SvelteKit, NuxtJS, Typescript, Laravel and Tailwindcss</strong> just to name a few.
+			I have a well-founded proficiencies with <strong>Javascript</strong> and <strong>PHP</strong> and experience with modern rendering frameworks like <strong>Svelte, React, Vue and Astro</strong>, as well as technologies and meta-frameworks like <strong>NextJS, SvelteKit, NuxtJS, Typescript, Laravel and Tailwindcss</strong>, just to name a few.
 		</p>
 
 		<p class="text-base sm:text-lg mt-5">
@@ -120,7 +119,7 @@ const $$Maintenance = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$Maintenance;
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl">
-            <h1 class="text-3xl sm:text-5xl font-bold">
+            <h1 class="text-3xl sm:text-4xl font-bold">
                 It's not your fault... 🥲
             </h1>
             <p class="text-base sm:text-lg mt-5">
@@ -145,7 +144,7 @@ const $$AboutMe = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$AboutMe;
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl">
-        <h1 class="text-3xl sm:text-5xl font-bold">
+        <h1 class="text-3xl sm:text-4xl font-bold">
             Pleased to meet 🤝
         </h1>
 
@@ -209,18 +208,22 @@ const $$Astro = createAstro("https://vincentdorian.me");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
-  const posts = await Astro2.glob(/* #__PURE__ */ Object.assign({"./nav-link-animations-using-tailwindcss.md": () => Promise.resolve().then(() => _page5)}), () => "./*.md");
+  const posts = await Astro2.glob(/* #__PURE__ */ Object.assign({"./nav-link-animations-using-tailwindcss.mdx": () => Promise.resolve().then(() => _page5)}), () => "./*.mdx");
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl">
-        <h1 class="text-3xl sm:text-5xl font-bold">I write ✍️</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold">I write ✍️</h1>
 
 		<p class="text-base sm:text-lg mt-5">
-            	
+            I share some of the things I encounter during my projects. If you like my stuff, I would be happy to hear from you and connect (if you don't - feel free to criticize and let me know why).
         </p>
-    </div><ul>
+    <ul class="mt-5">
         ${posts.map((p) => renderTemplate`<li>
-                    ${p.frontmatter.title}
+                    <a class="flex flex-col items-start"${addAttribute(p.frontmatter.url, "href")}>
+                    <span class="text-lg font-semibold">${p.frontmatter.title}</span>
+                    <span class="text-gray-600">${p.frontmatter.date}</span>
+                    </a>
                 </li>`)}
-    </ul>` })}`;
+    </ul>
+</div>` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/blog/index.astro");
 
 const $$file = "/Users/vincentschilling/Projects/portfolio/src/pages/blog/index.astro";
@@ -233,39 +236,79 @@ const _page4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
-const html = "<h2 id=\"introduction\">Introduction</h2>\n<p>I love working with tailwindcss. It really can do everything that I want to build without adding too much complexity on top of your code and I do not have to write any CSS in files. Just a few weeks I wanted to implement some cool animations like a sliding border for a nav link.</p>\n<p>Browsing through CSS tricks and Stackoverflow I found some posts that showed how the pseudo-element <em>after</em> can be used to create an element behind the actual nav link whose background then can be used to simulate a border for the parent element as so:</p>";
+const MDXLayout = async function ({
+  children
+}) {
+  const Layout = (await import('../BlogPostLayout.d233beee.mjs')).default;
+  const {
+    layout,
+    ...content
+  } = frontmatter;
+  content.file = file;
+  content.url = url;
+  return createVNode(Layout, {
+    file,
+    url,
+    content,
+    frontmatter: content,
+    headings: getHeadings(),
+    "server:root": true,
+    children
+  });
+};
+const frontmatter = {
+  "layout": "../../layouts/BlogPostLayout.astro",
+  "title": "Nav link animations using Tailwindcss",
+  "description": "Let me show you how you can easily achieve some cool animations using pseudo-elements with Tailwindcss!",
+  "draft": true,
+  "url": "/blog/nav-link-animations-using-tailwindcss",
+  "date": "27/02/2023"
+};
+function getHeadings() {
+  return [];
+}
+function _createMdxContent(props) {
+  const _components = Object.assign({
+    p: "p",
+    em: "em"
+  }, props.components);
+  return createVNode(Fragment, {
+    children: [createVNode(_components.p, {
+      children: "I love working with Tailwindcss. It really can do everything that I want to build without adding too much complexity on top of your code and I do not have to write any CSS in files. Just a few weeks I wanted to implement some cool animations like a sliding border for a nav link."
+    }), "\n", createVNode(_components.p, {
+      children: ["Browsing through CSS tricks and Stackoverflow I found some posts that showed how the pseudo-element ", createVNode(_components.em, {
+        children: "after"
+      }), " can be used to create an element behind the actual nav link whose background then can be used to simulate a border for the parent element as so:"]
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  return createVNode(MDXLayout, {
+    ...props,
+    children: createVNode(_createMdxContent, {
+      ...props
+    })
+  });
+}
 
-				const frontmatter = {"title":"Nav link animations using tailwindcss","description":"Let me show you how you can easily achieve some cool animations using pseudo-elements with tailwindcss!","draft":true};
-				const file = "/Users/vincentschilling/Projects/portfolio/src/pages/blog/nav-link-animations-using-tailwindcss.md";
-				const url = "/blog/nav-link-animations-using-tailwindcss";
-				function rawContent() {
-					return "\n## Introduction\n\nI love working with tailwindcss. It really can do everything that I want to build without adding too much complexity on top of your code and I do not have to write any CSS in files. Just a few weeks I wanted to implement some cool animations like a sliding border for a nav link.\n\nBrowsing through CSS tricks and Stackoverflow I found some posts that showed how the pseudo-element _after_ can be used to create an element behind the actual nav link whose background then can be used to simulate a border for the parent element as so:\n\n\n\n";
-				}
-				function compiledContent() {
-					return html;
-				}
-				function getHeadings() {
-					return [{"depth":2,"slug":"introduction","text":"Introduction"}];
-				}
-				async function Content() {
-					const { layout, ...content } = frontmatter;
-					content.file = file;
-					content.url = url;
-					const contentFragment = createVNode(Fragment, { 'set:html': html });
-					return contentFragment;
-				}
-				Content[Symbol.for('astro.needsHeadRendering')] = true;
+__astro_tag_component__(getHeadings, "astro:jsx");
+__astro_tag_component__(MDXContent, "astro:jsx");
+const url = "/blog/nav-link-animations-using-tailwindcss";
+const file = "/Users/vincentschilling/Projects/portfolio/src/pages/blog/nav-link-animations-using-tailwindcss.mdx";
+const Content = (props = {}) => MDXContent({
+											...props,
+											components: { Fragment, ...props.components },
+										});
+Content[Symbol.for('astro.needsHeadRendering')] = !Boolean(frontmatter.layout);
 
 const _page5 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   Content,
-  compiledContent,
   default: Content,
   file,
   frontmatter,
   getHeadings,
-  rawContent,
   url
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { _page0 as _, _page1 as a, _page2 as b, _page3 as c, _page4 as d, _page5 as e };
+export { $$Layout as $, _page0 as _, _page1 as a, _page2 as b, _page3 as c, _page4 as d, _page5 as e };
