@@ -239,7 +239,7 @@ const _page4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
 const MDXLayout = async function ({
   children
 }) {
-  const Layout = (await import('../BlogPostLayout.d233beee.mjs')).default;
+  const Layout = (await import('../BlogPostLayout.155c0f5d.mjs')).default;
   const {
     layout,
     ...content
@@ -269,16 +269,11 @@ function getHeadings() {
 }
 function _createMdxContent(props) {
   const _components = Object.assign({
-    p: "p",
-    em: "em"
+    p: "p"
   }, props.components);
   return createVNode(Fragment, {
-    children: [createVNode(_components.p, {
-      children: "I love working with Tailwindcss. It really can do everything that I want to build without adding too much complexity on top of your code and I do not have to write any CSS in files. Just a few weeks I wanted to implement some cool animations like a sliding border for a nav link."
-    }), "\n", createVNode(_components.p, {
-      children: ["Browsing through CSS tricks and Stackoverflow I found some posts that showed how the pseudo-element ", createVNode(_components.em, {
-        children: "after"
-      }), " can be used to create an element behind the actual nav link whose background then can be used to simulate a border for the parent element as so:"]
+    children: ["\n", createVNode(_components.p, {
+      children: "Post coming soon\u2026"
     })]
   });
 }

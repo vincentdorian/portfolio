@@ -1,6 +1,6 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead, e as renderSlot } from './astro.846112cf.mjs';
 import 'html-escaper';
-import { $ as $$Layout } from './pages/all.4c0aae0a.mjs';
+import { $ as $$Layout } from './pages/all.34041db7.mjs';
 import 'path-to-regexp';
 import 'mime';
 import 'cookie';
