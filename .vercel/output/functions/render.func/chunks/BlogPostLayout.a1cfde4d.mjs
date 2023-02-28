@@ -1,6 +1,6 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead, e as renderSlot } from './astro.846112cf.mjs';
 import 'html-escaper';
-import { $ as $$Layout } from './pages/all.34041db7.mjs';
+import { $ as $$Layout } from './pages/all.bbf7b2e3.mjs';
 import 'path-to-regexp';
 import 'mime';
 import 'cookie';
@@ -13,8 +13,8 @@ const $$BlogPostLayout = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BlogPostLayout;
   const { frontmatter } = Astro2.props;
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl -mt-8">
-        <span>
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl relative">
+        <span class="absolute -top-6">
             <a href="/blog" class="text-gray-800">
                 &larr; back to overview
             </a>
