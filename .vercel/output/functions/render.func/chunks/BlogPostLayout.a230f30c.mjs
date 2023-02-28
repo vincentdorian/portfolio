@@ -1,13 +1,13 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead, e as renderSlot } from './astro.846112cf.mjs';
 import 'html-escaper';
-import { $ as $$Layout } from './pages/all.bbf7b2e3.mjs';
+import { $ as $$Layout } from './pages/all.10cecbe4.mjs';
 import 'path-to-regexp';
 import 'mime';
 import 'cookie';
 import 'kleur/colors';
 import 'string-width';
 import 'slash';
-/* empty css                             */
+/* empty css                          */
 const $$Astro = createAstro("https://vincentdorian.me");
 const $$BlogPostLayout = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);

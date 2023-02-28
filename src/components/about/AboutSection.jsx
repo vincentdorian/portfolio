@@ -2,12 +2,12 @@ import { createSignal, Show } from "solid-js";
 
 const [show, setShow] = createSignal('short')
 
-const AboutMeSection = () => {
+const AboutSection = () => {
     return (
         <div class="max-w-3xl relative">
         <span class="inline-flex">
         <h1 class="text-3xl sm:text-4xl font-bold">
-            About me
+            About
         </h1>
         <button class="ml-3 inline-flex bg-indigo-700 font-semibold text-indigo-50 rounded w-20 hover:bg-indigo-600 hover:text-white items-center justify-center text-xl" onClick={() => {show() === 'long' ? setShow('short') : setShow('long')}}>
             {show() === 'long' ? 'long' : 'short'}
@@ -15,7 +15,7 @@ const AboutMeSection = () => {
         </span>
         <Show when={show() === 'long'}>
             <p class="text-base sm:text-lg mt-5">
-                    Now that I think about it, my path in web development was partly laid in <strong>2014-2016</strong> when I went to August-Bebel-Schule (Offenbach, Germany) a high school with a focus on <strong>media design. </strong>
+                    My path in web development was partly laid in <strong>2014-2016</strong> when I went to August-Bebel-Schule (Offenbach, Germany) a high school with a focus on <strong>media design. </strong>
                     Here, I made my first experience with <strong>web design and static HTML</strong>, however the biggest gain back then was learning about basic design principles and how to apply them.
                 </p>
 
@@ -65,4 +65,4 @@ const AboutMeSection = () => {
     )
 }
 
-export default AboutMeSection
+export default AboutSection
