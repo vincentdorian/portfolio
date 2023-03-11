@@ -3,11 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 
 const posts = await Astro.glob('./*.mdx')
 ---
-<Layout>
+<Layout title="Blog">
     <div class="max-w-3xl">
-        <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Blog</h1>
-
-		<p class="text-base sm:text-lg mt-5 text-gray-800">
+       <p class="text-base sm:text-lg mt-5 text-gray-800">
             I write about some my thoughts and projects. Mainly about JS frameworks, Laravel and Tailwindcss.
         </p>
     <ul class="mt-5">
