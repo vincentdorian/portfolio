@@ -35,7 +35,7 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
     <title>Vincent Dorian</title>
   ${renderHead($$result)}</head>
   <body class="min-h-screen">
-    <div class="mx-auto flex flex-col md:flex-row max-w-fit mt-20 gap-x-10 px-5">
+    <div class="mx-auto flex flex-col md:flex-row max-w-fit mt-5 md:mt-20 gap-x-10 px-5 pb-5">
         <aside class="flex flex-row md:flex-col items-start xl:-ml-56 md:w-56 gap-x-5">
             <img src="/photo.jpg" class="w-24 h-24 rounded-full bg-red-100 content-center object-scale">
             <div class="md:mt-3">
@@ -96,7 +96,7 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
             </nav>
           </header>
           <main class="text-gray-800 mt-6">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">${title} </h1>
+            <h1 class="text-3xl sm:text-4xl font-medium text-gray-900">${title} </h1>
             ${renderSlot($$result, $$slots["default"])}
           </main>
           </div>
@@ -118,9 +118,9 @@ const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
 		</p><p class="text-base sm:text-lg mt-5 text-gray-700">
 			I have a well-founded proficiencies with <strong>Javascript</strong> and <strong>PHP</strong> and experience with modern rendering frameworks like <strong>Svelte, React, Vue and Astro</strong>, as well as technologies and meta-frameworks like <strong>NextJS, SvelteKit, NuxtJS, Typescript, Laravel and Tailwindcss.</strong>
 		</p><p class="text-base sm:text-lg mt-5 text-gray-700">
-			In case you would like to get to know me a little better, feel free to stay a while and read more <strong><a href="/about-me" class="underline">about me.</a></strong>
-			If you are curious about my work you can browse through some of my previous <strong><a href="/projects" class="underline">projects.</a></strong>
-			I have also just recently started a <strong><a href="/blog" class="underline">blog</a></strong>, where I share some of my experiences and documenting some of my side projects.
+			In case you would like to get to know me a little better, feel free to stay a while and read more <strong><a href="/about-me" class="underline hover:text-indigo-700">about me.</a></strong>
+			If you are curious about my work you can browse through some of my previous <strong><a href="/projects" class="underline hover:text-indigo-700">projects.</a></strong>
+			I have also just recently started a <strong><a href="/blog" class="underline hover:text-indigo-700">blog</a></strong>, where I share some of my experiences and documenting some of my side projects.
 		</p>` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/index.astro");
 
@@ -233,7 +233,7 @@ const _page4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
 const MDXLayout = async function ({
   children
 }) {
-  const Layout = (await import('../BlogPostLayout.d39e56e7.mjs')).default;
+  const Layout = (await import('../BlogPostLayout.24feff2e.mjs')).default;
   const {
     layout,
     ...content

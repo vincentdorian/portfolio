@@ -36,7 +36,7 @@ const links = [
     <title>Vincent Dorian</title>
   </head>
   <body class="min-h-screen">
-    <div class="mx-auto flex flex-col md:flex-row max-w-fit mt-20 gap-x-10 px-5">
+    <div class="mx-auto flex flex-col md:flex-row max-w-fit mt-5 md:mt-20 gap-x-10 px-5 pb-5">
         <aside class="flex flex-row md:flex-col items-start xl:-ml-56 md:w-56 gap-x-5">
             <img src="/photo.jpg" class="w-24 h-24 rounded-full bg-red-100 content-center object-scale" />
             <div class="md:mt-3">
@@ -130,7 +130,7 @@ const links = [
             </nav>
           </header>
           <main class="text-gray-800 mt-6">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">{title} </h1>
+            <h1 class="text-3xl sm:text-4xl font-medium text-gray-900">{title} </h1>
             <slot />
           </main>
           </div>
