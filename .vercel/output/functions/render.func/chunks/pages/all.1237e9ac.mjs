@@ -1,6 +1,6 @@
-/* empty css                           */import { c as createAstro, a as createComponent, r as renderTemplate, b as addAttribute, d as renderHead, e as renderSlot, f as renderComponent, m as maybeRenderHead, _ as __astro_tag_component__, F as Fragment, g as createVNode } from '../astro.846112cf.mjs';
+/* empty css                           */import { c as createAstro, a as createComponent, r as renderTemplate, b as addAttribute, d as renderHead, e as renderSlot, _ as __astro_tag_component__, f as createVNode, F as Fragment, g as renderComponent, m as maybeRenderHead } from '../astro.d91fa031.mjs';
 import 'html-escaper';
-
+/* empty css                           */
 const $$Astro$5 = createAstro("https://vincentdorian.me");
 const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
@@ -87,7 +87,7 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
             <nav class="flex flex-row items-center gap-x-5 font-medium tracking-wide text-gray-900">
               ${links.map(
     (link) => renderTemplate`<a${addAttribute(
-      pathname === link.href ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[0.2rem] after:bg-indigo-700 after:w-full" : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[0.2rem] after:bg-indigo-700 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center",
+      pathname === link.href ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-px after:bg-black after:w-full" : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-px after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center",
       "class"
     )}${addAttribute(link.href, "href")}>
                     ${link.name}
@@ -97,7 +97,9 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
           </header>
           <main class="text-gray-800 mt-6">
             <h1 class="text-3xl sm:text-4xl font-medium text-gray-900">${title} </h1>
-            ${renderSlot($$result, $$slots["default"])}
+            <section class="mt-5 prose prose-">
+              ${renderSlot($$result, $$slots["default"])}
+            </section>
           </main>
           </div>
           
@@ -107,21 +109,80 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
   </body></html>`;
 }, "/Users/vincentschilling/Projects/portfolio/src/layouts/Layout.astro");
 
+const frontmatter$1 = {};
+function getHeadings$1() {
+  return [];
+}
+function _createMdxContent$1(props) {
+  const _components = Object.assign({
+    p: "p",
+    strong: "strong"
+  }, props.components);
+  return createVNode(Fragment, {
+    children: [createVNode(_components.p, {
+      children: "I\u2019m Vincent, a full-stack developer building fast, reliable and easy-to-use web applications.\nI am always enthusiasthic about new technologies, trying to find the optimal way to create the best user experience possible and chasing after the perfect lighthouse scores."
+    }), "\n", createVNode(_components.p, {
+      children: ["I have a well-founded proficiencies with ", createVNode(_components.strong, {
+        children: "Javascript and PHP"
+      }), " and experience with modern rendering frameworks like ", createVNode(_components.strong, {
+        children: "Svelte, React, Vue and Astro"
+      }), ", as well as technologies and meta-frameworks like ", createVNode(_components.strong, {
+        children: "NextJS, SvelteKit, NuxtJS, Typescript, Laravel and Tailwindcss."
+      })]
+    }), "\n", createVNode(_components.p, {
+      children: ["In case you would like to get to know me a little better, feel free to stay a while and read more ", createVNode("a", {
+        href: "/about-me",
+        class: "underline hover:text-indigo-700",
+        children: "about me."
+      }), "\nIf you are curious about my work you can browse through some of my previous ", createVNode("a", {
+        href: "/projects",
+        class: "underline hover:text-indigo-700",
+        children: "projects."
+      }), "\nI have also just recently started a ", createVNode("a", {
+        href: "/blog",
+        class: "underline hover:text-indigo-700",
+        children: "blog"
+      }), ", where I share some of my experiences and documenting some of my side projects."]
+    })]
+  });
+}
+function MDXContent$1(props = {}) {
+  const {
+    wrapper: MDXLayout
+  } = props.components || {};
+  return MDXLayout ? createVNode(MDXLayout, {
+    ...props,
+    children: createVNode(_createMdxContent$1, {
+      ...props
+    })
+  }) : _createMdxContent$1(props);
+}
+
+__astro_tag_component__(getHeadings$1, "astro:jsx");
+__astro_tag_component__(MDXContent$1, "astro:jsx");
+const url$1 = "/home";
+const file$1 = "/Users/vincentschilling/Projects/portfolio/src/pages/home.mdx";
+const Content$1 = (props = {}) => MDXContent$1({
+											...props,
+											components: { Fragment, ...props.components },
+										});
+Content$1[Symbol.for('astro.needsHeadRendering')] = !Boolean(frontmatter$1.layout);
+
+const _page6 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  Content: Content$1,
+  default: Content$1,
+  file: file$1,
+  frontmatter: frontmatter$1,
+  getHeadings: getHeadings$1,
+  url: url$1
+}, Symbol.toStringTag, { value: 'Module' }));
+
 const $$Astro$4 = createAstro("https://vincentdorian.me");
 const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
   Astro2.self = $$Index$2;
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Hi there \u{1F44B}" }, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<p class="text-base sm:text-lg mt-4 text-gray-700">
-			I'm Vincent, a <strong>full-stack developer</strong> building <strong>fast, reliable and easy-to-use web applications.</strong>
-
-			I am always enthusiasthic about new technologies, trying to find the optimal way to create the <strong>best user experience</strong> possible and chasing after the <strong>perfect lighthouse scores.</strong>
-		</p><p class="text-base sm:text-lg mt-5 text-gray-700">
-			I have a well-founded proficiencies with <strong>Javascript</strong> and <strong>PHP</strong> and experience with modern rendering frameworks like <strong>Svelte, React, Vue and Astro</strong>, as well as technologies and meta-frameworks like <strong>NextJS, SvelteKit, NuxtJS, Typescript, Laravel and Tailwindcss.</strong>
-		</p><p class="text-base sm:text-lg mt-5 text-gray-700">
-			In case you would like to get to know me a little better, feel free to stay a while and read more <strong><a href="/about-me" class="underline hover:text-indigo-700">about me.</a></strong>
-			If you are curious about my work you can browse through some of my previous <strong><a href="/projects" class="underline hover:text-indigo-700">projects.</a></strong>
-			I have also just recently started a <strong><a href="/blog" class="underline hover:text-indigo-700">blog</a></strong>, where I share some of my experiences and documenting some of my side projects.
-		</p>` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Hey there" }, { "default": ($$result2) => renderTemplate`${renderComponent($$result2, "Content", Content$1, {})}` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/index.astro");
 
 const $$file$4 = "/Users/vincentschilling/Projects/portfolio/src/pages/index.astro";
@@ -176,18 +237,61 @@ const _page2 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   url: $$url$2
 }, Symbol.toStringTag, { value: 'Module' }));
 
+const frontmatter = {};
+function getHeadings() {
+  return [];
+}
+function _createMdxContent(props) {
+  const _components = Object.assign({
+    p: "p"
+  }, props.components);
+  return createVNode(Fragment, {
+    children: [createVNode(_components.p, {
+      children: "I started my career as a web developer back in 2021 and my job has become my hobby and passion.\nThrough my design and engineering background, I am a good generalist, always able to look at problems from different angles."
+    }), "\n", createVNode(_components.p, {
+      children: "Apart from web development I am interested in the topics virtual worlds, AI, blockchain, web3 and many more."
+    }), "\n", createVNode(_components.p, {
+      children: "When I am not coding, you can probably catch me riding my gravel bike, reading a book or eating."
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {
+    wrapper: MDXLayout
+  } = props.components || {};
+  return MDXLayout ? createVNode(MDXLayout, {
+    ...props,
+    children: createVNode(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+
+__astro_tag_component__(getHeadings, "astro:jsx");
+__astro_tag_component__(MDXContent, "astro:jsx");
+const url = "/about";
+const file = "/Users/vincentschilling/Projects/portfolio/src/pages/about.mdx";
+const Content = (props = {}) => MDXContent({
+											...props,
+											components: { Fragment, ...props.components },
+										});
+Content[Symbol.for('astro.needsHeadRendering')] = !Boolean(frontmatter.layout);
+
+const _page4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  Content,
+  default: Content,
+  file,
+  frontmatter,
+  getHeadings,
+  url
+}, Symbol.toStringTag, { value: 'Module' }));
+
 const $$Astro$1 = createAstro("https://vincentdorian.me");
 const $$About = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$About;
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "About" }, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<p class="text-base sm:text-lg mt-5">
-        I started my career as a <strong>web developer</strong> back in <strong>2021</strong> and my job has become my hobby and passion.
-        Through my <strong>design and engineering background</strong>, I am a <strong>good generalist,</strong> always able to look at problems from different angles.
-    </p><p class="text-base sm:text-lg mt-5">
-        Apart from web development I am interested in the topics <strong>virtual worlds, AI, blockchain, web3</strong> and many more.
-    </p><p class="text-base sm:text-lg mt-5">
-        When I am not coding, you can probably catch me riding my gravel bike, reading a book or eating.
-    </p>` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "About" }, { "default": ($$result2) => renderTemplate`${renderComponent($$result2, "Content", Content, {})}` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/about.astro");
 
 const $$file$1 = "/Users/vincentschilling/Projects/portfolio/src/pages/about.astro";
@@ -204,18 +308,12 @@ const $$Astro = createAstro("https://vincentdorian.me");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
-  const posts = await Astro2.glob(/* #__PURE__ */ Object.assign({"./nav-link-animations-using-tailwindcss.mdx": () => Promise.resolve().then(() => _page5)}), () => "./*.mdx");
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Blog" }, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<div class="max-w-3xl">
        <p class="text-base sm:text-lg mt-5 text-gray-800">
             I write about some my thoughts and projects. Mainly about JS frameworks, Laravel and Tailwindcss.
         </p>
     <ul class="mt-5">
-        ${posts.map((p) => renderTemplate`<li>
-                    <a class="flex flex-col items-start"${addAttribute(p.frontmatter.url, "href")}>
-                    <span class="text-lg font-semibold">${p.frontmatter.title}</span>
-                    <span class="text-gray-600">${p.frontmatter.date}</span>
-                    </a>
-                </li>`)}
+        ${void 0}
     </ul>
 </div>` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/blog/index.astro");
@@ -223,81 +321,11 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
 const $$file = "/Users/vincentschilling/Projects/portfolio/src/pages/blog/index.astro";
 const $$url = "/blog";
 
-const _page4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const _page5 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   default: $$Index,
   file: $$file,
   url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
-const MDXLayout = async function ({
-  children
-}) {
-  const Layout = (await import('../BlogPostLayout.24feff2e.mjs')).default;
-  const {
-    layout,
-    ...content
-  } = frontmatter;
-  content.file = file;
-  content.url = url;
-  return createVNode(Layout, {
-    file,
-    url,
-    content,
-    frontmatter: content,
-    headings: getHeadings(),
-    "server:root": true,
-    children
-  });
-};
-const frontmatter = {
-  "layout": "../../layouts/BlogPostLayout.astro",
-  "title": "Nav link animations using Tailwindcss",
-  "description": "Let me show you how you can easily achieve some cool animations using pseudo-elements with Tailwindcss!",
-  "draft": true,
-  "url": "/blog/nav-link-animations-using-tailwindcss",
-  "date": "27/02/2023"
-};
-function getHeadings() {
-  return [];
-}
-function _createMdxContent(props) {
-  const _components = Object.assign({
-    p: "p"
-  }, props.components);
-  return createVNode(Fragment, {
-    children: ["\n", createVNode(_components.p, {
-      children: "Post coming soon\u2026"
-    })]
-  });
-}
-function MDXContent(props = {}) {
-  return createVNode(MDXLayout, {
-    ...props,
-    children: createVNode(_createMdxContent, {
-      ...props
-    })
-  });
-}
-
-__astro_tag_component__(getHeadings, "astro:jsx");
-__astro_tag_component__(MDXContent, "astro:jsx");
-const url = "/blog/nav-link-animations-using-tailwindcss";
-const file = "/Users/vincentschilling/Projects/portfolio/src/pages/blog/nav-link-animations-using-tailwindcss.mdx";
-const Content = (props = {}) => MDXContent({
-											...props,
-											components: { Fragment, ...props.components },
-										});
-Content[Symbol.for('astro.needsHeadRendering')] = !Boolean(frontmatter.layout);
-
-const _page5 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  Content,
-  default: Content,
-  file,
-  frontmatter,
-  getHeadings,
-  url
-}, Symbol.toStringTag, { value: 'Module' }));
-
-export { $$Layout as $, _page0 as _, _page1 as a, _page2 as b, _page3 as c, _page4 as d, _page5 as e };
+export { _page0 as _, _page1 as a, _page2 as b, _page3 as c, _page4 as d, _page5 as e, _page6 as f };

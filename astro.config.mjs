@@ -24,7 +24,9 @@ import solidJs from "@astrojs/solid-js";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react(), mdx(), sitemap({
-    customPages: ['https://vincentdorian.me/', 'https://vincentdorian.me/blog', 'https://www.vincentdorian.me/', 'https://www.vincentdorian.me/blog']
+    customPages: [
+      'https://vincentdorian.me/',
+    ]
   }), robotsTxt(), solidJs()],
   site: 'https://vincentdorian.me',
   output: 'server',

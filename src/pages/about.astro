@@ -1,21 +1,7 @@
 ---
-import AboutSection from "../components/about/AboutSection";
 import Layout from "../layouts/Layout.astro"
-
-
-
+import {Content} from "../pages/about.mdx"
 ---
 <Layout title="About">
-    <p class="text-base sm:text-lg mt-5">
-        I started my career as a <strong>web developer</strong> back in <strong>2021</strong> and my job has become my hobby and passion.
-        Through my <strong>design and engineering background</strong>, I am a <strong>good generalist,</strong> always able to look at problems from different angles.
-    </p>
-
-    <p class="text-base sm:text-lg mt-5">
-        Apart from web development I am interested in the topics <strong>virtual worlds, AI, blockchain, web3</strong> and many more.
-    </p>
-
-    <p class="text-base sm:text-lg mt-5">
-        When I am not coding, you can probably catch me riding my gravel bike, reading a book or eating.
-    </p>
+    <Content />
 </Layout>

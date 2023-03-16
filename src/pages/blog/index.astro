@@ -1,7 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-
-const posts = await Astro.glob('./*.mdx')
 ---
 <Layout title="Blog">
     <div class="max-w-3xl">
@@ -10,14 +8,7 @@ const posts = await Astro.glob('./*.mdx')
         </p>
     <ul class="mt-5">
         {
-            posts.map(p => (
-                <li>
-                    <a class="flex flex-col items-start" href={p.frontmatter.url}>
-                    <span class="text-lg font-semibold">{p.frontmatter.title}</span>
-                    <span class="text-gray-600">{p.frontmatter.date}</span>
-                    </a>
-                </li>
-            ))
+            
         }
     </ul>
 </div>

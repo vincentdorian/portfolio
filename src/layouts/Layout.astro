@@ -1,4 +1,7 @@
 ---
+import "@fontsource/montserrat"
+import "@fontsource/montserrat-subrayada"
+
 const { pathname } = Astro.url;
 
 const { title } = Astro.props;
@@ -118,8 +121,8 @@ const links = [
                   (<a
                     class={
                       pathname === link.href
-                        ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[0.2rem] after:bg-indigo-700 after:w-full"
-                        : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[0.2rem] after:bg-indigo-700 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+                        ? "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-px after:bg-black after:w-full"
+                        : "relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-px after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
                     }
                     href={link.href}
                   >
@@ -131,7 +134,9 @@ const links = [
           </header>
           <main class="text-gray-800 mt-6">
             <h1 class="text-3xl sm:text-4xl font-medium text-gray-900">{title} </h1>
-            <slot />
+            <section class="mt-5 prose prose-">
+              <slot />
+            </section>
           </main>
           </div>
           
