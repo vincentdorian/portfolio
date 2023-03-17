@@ -1,6 +1,4 @@
 ---
-import "@fontsource/montserrat"
-
 const { pathname } = Astro.url;
 
 const { title } = Astro.props;
@@ -23,10 +21,10 @@ const links = [
     name: "Projects",
     href: "/projects",
   },
-  {
+  /* {
     name: "Contact",
     href: "/contact"
-  }
+  } */
 ];
 
 ---
@@ -69,16 +67,9 @@ const links = [
     </header>
     <main class="text-gray-800 mt-6">
       <h1 class="text-3xl sm:text-4xl font-light text-gray-900">{title} </h1>
-      <section class="mt-5 prose prose-p:font-light prose-strong:font-normal">
         <slot />
-      </section>
-    </main>
+        </main>
     </div>
    
   </body>
 </html>
-<style is:global>
-  body {
-    font-display: optional;
-  }
-</style>

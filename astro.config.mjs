@@ -4,9 +4,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
-import react from "@astrojs/react";
-
-// https://astro.build/config
 import vercel from "@astrojs/vercel/edge";
 
 // https://astro.build/config
@@ -23,12 +20,16 @@ import solidJs from "@astrojs/solid-js";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), mdx(), sitemap({
-    customPages: [
-      'https://vincentdorian.me/',
-    ]
-  }), robotsTxt(), solidJs()],
-  site: 'https://vincentdorian.me',
-  output: 'server',
-  adapter: vercel()
+  integrations: [
+    tailwind(),
+    mdx(),
+    robotsTxt(),
+    solidJs(),
+    sitemap({
+      customPages: ["https://vincentdorian.me/"],
+    }),
+  ],
+  site: "https://vincentdorian.me",
+  output: "server",
+  adapter: vercel(),
 });

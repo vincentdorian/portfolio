@@ -1,0 +1,9 @@
+---
+let {href} = Astro.props
+---
+<a class="group inline-flex items-center border border-gray-900 p-2 w-fit text-sm hover:bg-gray-900 hover:text-gray-100 gap-x-1 active:bg-gray-900 active:text-gray-100" href={href}>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-800 group-hover:text-gray-200 group-active:text-gray-200">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+    </svg>
+    <slot />
+</a>

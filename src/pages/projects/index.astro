@@ -1,8 +1,20 @@
 ---
-import Layout from "../../layouts/Layout.astro"
+import LinkBox from "../../components/LinkBox.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
+
 <Layout title={"Projects"}>
-    <p class="prose">
-      Soon you will be able to view some of my projects here. Until then you can have a look at my GitHub.
-    </p>
+  <section>
+    <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
+      <p>
+        Soon you will be able to view some of my projects here. Until then you
+        can have a look at my GitHub.
+      </p>
+    </div>
+    <div class="mt-7 flex flex-col sm:flex-row gap-3">
+      <LinkBox href={"https://github.com/vincentdorian"}>
+        View my GitHub
+      </LinkBox>
+    </div>
+  </section>
 </Layout>

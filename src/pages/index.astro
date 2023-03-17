@@ -1,8 +1,18 @@
 ---
+import LinkBox from "../components/LinkBox.astro";
 import Layout from "../layouts/Layout.astro";
 import {Content} from "./home.mdx"
 ---
 
 <Layout title="Vincent Dorian">
-	<Content />
+	<section>
+		<div class="mt-5 prose prose-p:font-light prose-strong:font-normal">
+			<Content />
+		</div>
+		<div class="mt-7 flex flex-col sm:flex-row gap-3">
+			<LinkBox href={'https://www.linkedin.com/in/vincent-schilling-758246251/'}>Connect on LinkedIn</LinkBox>
+
+			<LinkBox href={'/contact'}>Leave me a message</LinkBox>
+		</div>
+	</section>
 </Layout>

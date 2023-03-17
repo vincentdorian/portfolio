@@ -1,8 +1,18 @@
 ---
+import LinkBox from "../../components/LinkBox.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
+
 <Layout title="Blog">
-    <p>
-        I've recently begun to write some blog posts and am planning to become more active in the dev community. You can view my posts to Dev.to.
-    </p>
+  <section>
+    <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
+      <p>
+        I've recently begun to write some blog posts and am planning to become
+        more active in the dev community. You can view my posts on Dev.to.
+      </p>
+    </div>
+    <div class="mt-7 flex flex-col sm:flex-row gap-3">
+      <LinkBox href={"https://dev.to/vincentdorian"}>Read on DEV.TO</LinkBox>
+    </div>
+  </section>
 </Layout>

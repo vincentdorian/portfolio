@@ -1,7 +1,18 @@
 ---
+import LinkBox from "../components/LinkBox.astro";
 import Layout from "../layouts/Layout.astro"
 import {Content} from "../pages/about.mdx"
 ---
 <Layout title="About">
-    <Content />
+    <section>
+		<div class="mt-5 prose prose-p:font-light prose-strong:font-normal">
+			<Content />
+		</div>
+
+        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+			<LinkBox href={'https://twitter.com/vdoedev'}>Follow me on Twitter</LinkBox>
+
+			<LinkBox href={'https://www.strava.com/athletes/106008249'}>Connect on Strava</LinkBox>
+		</div>
+    </section>
 </Layout>
