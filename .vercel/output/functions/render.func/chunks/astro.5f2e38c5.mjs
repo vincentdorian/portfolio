@@ -1,34 +1,11 @@
+import { serialize, parse } from 'cookie';
 import { escape } from 'html-escaper';
 import { compile } from 'path-to-regexp';
 import mime from 'mime';
-import { serialize, parse } from 'cookie';
 import { yellow, dim, bold, cyan, red, reset } from 'kleur/colors';
 import 'string-width';
 import slashify from 'slash';
 
-var __accessCheck$3 = (obj, member, msg) => {
-  if (!member.has(obj))
-    throw TypeError("Cannot " + msg);
-};
-var __privateGet$3 = (obj, member, getter) => {
-  __accessCheck$3(obj, member, "read from private field");
-  return getter ? getter.call(obj) : member.get(obj);
-};
-var __privateAdd$3 = (obj, member, value) => {
-  if (member.has(obj))
-    throw TypeError("Cannot add the same private member more than once");
-  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-};
-var __privateSet$3 = (obj, member, value, setter) => {
-  __accessCheck$3(obj, member, "write to private field");
-  setter ? setter.call(obj, value) : member.set(obj, value);
-  return value;
-};
-var __privateMethod$1 = (obj, member, method) => {
-  __accessCheck$3(obj, member, "access private method");
-  return method;
-};
-var _request, _requestValues, _outgoing, _ensureParsed, ensureParsed_fn, _ensureOutgoingMap, ensureOutgoingMap_fn, _parse, parse_fn;
 const DELETED_EXPIRATION = new Date(0);
 const DELETED_VALUE = "deleted";
 class AstroCookie {
@@ -53,16 +30,13 @@ class AstroCookie {
   }
 }
 class AstroCookies {
+  #request;
+  #requestValues;
+  #outgoing;
   constructor(request) {
-    __privateAdd$3(this, _ensureParsed);
-    __privateAdd$3(this, _ensureOutgoingMap);
-    __privateAdd$3(this, _parse);
-    __privateAdd$3(this, _request, void 0);
-    __privateAdd$3(this, _requestValues, void 0);
-    __privateAdd$3(this, _outgoing, void 0);
-    __privateSet$3(this, _request, request);
-    __privateSet$3(this, _requestValues, null);
-    __privateSet$3(this, _outgoing, null);
+    this.#request = request;
+    this.#requestValues = null;
+    this.#outgoing = null;
   }
   delete(key, options) {
     const serializeOptions = {
@@ -74,31 +48,31 @@ class AstroCookies {
     if (options == null ? void 0 : options.path) {
       serializeOptions.path = options.path;
     }
-    __privateMethod$1(this, _ensureOutgoingMap, ensureOutgoingMap_fn).call(this).set(key, [
+    this.#ensureOutgoingMap().set(key, [
       DELETED_VALUE,
       serialize(key, DELETED_VALUE, serializeOptions),
       false
     ]);
   }
   get(key) {
-    if (__privateGet$3(this, _outgoing) !== null && __privateGet$3(this, _outgoing).has(key)) {
-      let [serializedValue, , isSetValue] = __privateGet$3(this, _outgoing).get(key);
+    if (this.#outgoing !== null && this.#outgoing.has(key)) {
+      let [serializedValue, , isSetValue] = this.#outgoing.get(key);
       if (isSetValue) {
         return new AstroCookie(serializedValue);
       } else {
         return new AstroCookie(void 0);
       }
     }
-    const values = __privateMethod$1(this, _ensureParsed, ensureParsed_fn).call(this);
+    const values = this.#ensureParsed();
     const value = values[key];
     return new AstroCookie(value);
   }
   has(key) {
-    if (__privateGet$3(this, _outgoing) !== null && __privateGet$3(this, _outgoing).has(key)) {
-      let [, , isSetValue] = __privateGet$3(this, _outgoing).get(key);
+    if (this.#outgoing !== null && this.#outgoing.has(key)) {
+      let [, , isSetValue] = this.#outgoing.get(key);
       return isSetValue;
     }
-    const values = __privateMethod$1(this, _ensureParsed, ensureParsed_fn).call(this);
+    const values = this.#ensureParsed();
     return !!values[key];
   }
   set(key, value, options) {
@@ -117,48 +91,42 @@ class AstroCookies {
     if (options) {
       Object.assign(serializeOptions, options);
     }
-    __privateMethod$1(this, _ensureOutgoingMap, ensureOutgoingMap_fn).call(this).set(key, [
+    this.#ensureOutgoingMap().set(key, [
       serializedValue,
       serialize(key, serializedValue, serializeOptions),
       true
     ]);
   }
   *headers() {
-    if (__privateGet$3(this, _outgoing) == null)
+    if (this.#outgoing == null)
       return;
-    for (const [, value] of __privateGet$3(this, _outgoing)) {
+    for (const [, value] of this.#outgoing) {
       yield value[1];
     }
   }
+  #ensureParsed() {
+    if (!this.#requestValues) {
+      this.#parse();
+    }
+    if (!this.#requestValues) {
+      this.#requestValues = {};
+    }
+    return this.#requestValues;
+  }
+  #ensureOutgoingMap() {
+    if (!this.#outgoing) {
+      this.#outgoing = /* @__PURE__ */ new Map();
+    }
+    return this.#outgoing;
+  }
+  #parse() {
+    const raw = this.#request.headers.get("cookie");
+    if (!raw) {
+      return;
+    }
+    this.#requestValues = parse(raw);
+  }
 }
-_request = new WeakMap();
-_requestValues = new WeakMap();
-_outgoing = new WeakMap();
-_ensureParsed = new WeakSet();
-ensureParsed_fn = function() {
-  if (!__privateGet$3(this, _requestValues)) {
-    __privateMethod$1(this, _parse, parse_fn).call(this);
-  }
-  if (!__privateGet$3(this, _requestValues)) {
-    __privateSet$3(this, _requestValues, {});
-  }
-  return __privateGet$3(this, _requestValues);
-};
-_ensureOutgoingMap = new WeakSet();
-ensureOutgoingMap_fn = function() {
-  if (!__privateGet$3(this, _outgoing)) {
-    __privateSet$3(this, _outgoing, /* @__PURE__ */ new Map());
-  }
-  return __privateGet$3(this, _outgoing);
-};
-_parse = new WeakSet();
-parse_fn = function() {
-  const raw = __privateGet$3(this, _request).headers.get("cookie");
-  if (!raw) {
-    return;
-  }
-  __privateSet$3(this, _requestValues, parse(raw));
-};
 
 const astroCookiesSymbol = Symbol.for("astro.cookies");
 function attachToResponse(response, cookies) {
@@ -175,11 +143,12 @@ function getFromResponse(response) {
 function* getSetCookiesFromResponse(response) {
   const cookies = getFromResponse(response);
   if (!cookies) {
-    return;
+    return [];
   }
   for (const headerValue of cookies.headers()) {
     yield headerValue;
   }
+  return [];
 }
 
 const defineErrors = (errs) => errs;
@@ -329,6 +298,31 @@ Expected \`true\` value but got \`${suffix}\`.`;
     message: (paramName) => `[paginate()] page number param \`${paramName}\` not found in your filepath.`,
     hint: "Rename your file to `[page].astro` or `[...page].astro`."
   },
+  ImageMissingAlt: {
+    title: "Missing alt property",
+    code: 3022,
+    message: "The alt property is required.",
+    hint: "The `alt` property is important for the purpose of accessibility, without it users using screen readers or other assistive technologies won't be able to understand what your image is supposed to represent. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-alt for more information."
+  },
+  InvalidImageService: {
+    title: "Error while loading image service",
+    code: 3023,
+    message: "There was an error loading the configured image service. Please see the stack trace for more information."
+  },
+  MissingImageDimension: {
+    title: "Missing image dimensions",
+    code: 3024,
+    message: (missingDimension, imageURL) => `Missing ${missingDimension === "both" ? "width and height attributes" : `${missingDimension} attribute`} for ${imageURL}. When using remote images, both dimensions are always required in order to avoid CLS.`,
+    hint: "If your image is inside your `src` folder, you probably meant to import it instead. See [the Imports guide for more information](https://docs.astro.build/en/guides/imports/#other-assets)."
+  },
+  UnsupportedImageFormat: {
+    title: "Unsupported image format",
+    code: 3025,
+    message: (format, imagePath, supportedFormats) => `Received unsupported format \`${format}\` from \`${imagePath}\`. Currently only ${supportedFormats.join(
+      ", "
+    )} are supported for optimization.`,
+    hint: "If you do not need optimization, using an `img` tag directly instead of the `Image` component might be what you're looking for."
+  },
   UnknownViteError: {
     title: "Unknown Vite Error.",
     code: 4e3
@@ -407,7 +401,9 @@ Expected \`true\` value but got \`${suffix}\`.`;
     code: 9001,
     message: (collection, entryId, error) => {
       return [
-        `${String(collection)} \u2192 ${String(entryId)} frontmatter does not match collection schema.`,
+        `**${String(collection)} \u2192 ${String(
+          entryId
+        )}** frontmatter does not match collection schema.`,
         ...error.errors.map((zodError) => zodError.message)
       ].join("\n");
     },
@@ -561,7 +557,7 @@ function createComponent(arg1, moduleId) {
   }
 }
 
-const ASTRO_VERSION = "2.0.15";
+const ASTRO_VERSION = "2.1.3";
 
 function createAstroGlobFn() {
   const globHandler = (importMetaGlobResult, globValue) => {
@@ -1694,9 +1690,16 @@ Did you forget to import the component or is it possible there is a typo?`);
 async function renderElement(result, tag, { children, ...props }) {
   return markHTMLString(
     `<${tag}${spreadAttributes(props)}${markHTMLString(
-      (children == null || children == "") && voidElementNames.test(tag) ? `/>` : `>${children == null ? "" : await renderJSX(result, children)}</${tag}>`
+      (children == null || children == "") && voidElementNames.test(tag) ? `/>` : `>${children == null ? "" : await renderJSX(result, prerenderElementChildren(tag, children))}</${tag}>`
     )}`
   );
+}
+function prerenderElementChildren(tag, children) {
+  if (typeof children === "string" && (tag === "style" || tag === "script")) {
+    return markHTMLString(children);
+  } else {
+    return children;
+  }
 }
 function useConsoleFilter() {
   consoleFilterRefs++;
@@ -1871,7 +1874,7 @@ Did you forget to import the component or is it possible there is a typo?`
             break;
           }
         } catch (e) {
-          error ?? (error = e);
+          error ??= e;
         }
       }
       if (!renderer && error) {
@@ -2084,44 +2087,25 @@ function renderComponentToIterable(result, displayName, Component, props, slots 
   return renderResult;
 }
 
-var __accessCheck$2 = (obj, member, msg) => {
-  if (!member.has(obj))
-    throw TypeError("Cannot " + msg);
-};
-var __privateGet$2 = (obj, member, getter) => {
-  __accessCheck$2(obj, member, "read from private field");
-  return getter ? getter.call(obj) : member.get(obj);
-};
-var __privateAdd$2 = (obj, member, value) => {
-  if (member.has(obj))
-    throw TypeError("Cannot add the same private member more than once");
-  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-};
-var __privateSet$2 = (obj, member, value, setter) => {
-  __accessCheck$2(obj, member, "write to private field");
-  setter ? setter.call(obj, value) : member.set(obj, value);
-  return value;
-};
 const isNodeJS = typeof process === "object" && Object.prototype.toString.call(process) === "[object process]";
 let StreamingCompatibleResponse;
 function createResponseClass() {
-  var _isStream, _body, _a;
-  StreamingCompatibleResponse = (_a = class extends Response {
+  StreamingCompatibleResponse = class extends Response {
+    #isStream;
+    #body;
     constructor(body, init) {
       let isStream = body instanceof ReadableStream;
       super(isStream ? null : body, init);
-      __privateAdd$2(this, _isStream, void 0);
-      __privateAdd$2(this, _body, void 0);
-      __privateSet$2(this, _isStream, isStream);
-      __privateSet$2(this, _body, body);
+      this.#isStream = isStream;
+      this.#body = body;
     }
     get body() {
-      return __privateGet$2(this, _body);
+      return this.#body;
     }
     async text() {
-      if (__privateGet$2(this, _isStream) && isNodeJS) {
+      if (this.#isStream && isNodeJS) {
         let decoder = new TextDecoder();
-        let body = __privateGet$2(this, _body);
+        let body = this.#body;
         let out = "";
         for await (let chunk of streamAsyncIterator(body)) {
           out += decoder.decode(chunk);
@@ -2131,8 +2115,8 @@ function createResponseClass() {
       return super.text();
     }
     async arrayBuffer() {
-      if (__privateGet$2(this, _isStream) && isNodeJS) {
-        let body = __privateGet$2(this, _body);
+      if (this.#isStream && isNodeJS) {
+        let body = this.#body;
         let chunks = [];
         let len = 0;
         for await (let chunk of streamAsyncIterator(body)) {
@@ -2149,7 +2133,7 @@ function createResponseClass() {
       }
       return super.arrayBuffer();
     }
-  }, _isStream = new WeakMap(), _body = new WeakMap(), _a);
+  };
   return StreamingCompatibleResponse;
 }
 const createResponse = isNodeJS ? (body, init) => {
@@ -2471,25 +2455,6 @@ function stringifyParams(params, routeComponent) {
   return JSON.stringify(validatedParams, Object.keys(params).sort());
 }
 
-var __accessCheck$1 = (obj, member, msg) => {
-  if (!member.has(obj))
-    throw TypeError("Cannot " + msg);
-};
-var __privateGet$1 = (obj, member, getter) => {
-  __accessCheck$1(obj, member, "read from private field");
-  return getter ? getter.call(obj) : member.get(obj);
-};
-var __privateAdd$1 = (obj, member, value) => {
-  if (member.has(obj))
-    throw TypeError("Cannot add the same private member more than once");
-  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-};
-var __privateSet$1 = (obj, member, value, setter) => {
-  __accessCheck$1(obj, member, "write to private field");
-  setter ? setter.call(obj, value) : member.set(obj, value);
-  return value;
-};
-var _result, _slots, _loggingOpts;
 const clientAddressSymbol$1 = Symbol.for("astro.clientAddress");
 function onlyAvailableInSSR(name) {
   return function _onlyAvailableInSSR() {
@@ -2508,13 +2473,13 @@ function getFunctionExpression(slot) {
   return slot.expressions[0];
 }
 class Slots {
+  #result;
+  #slots;
+  #loggingOpts;
   constructor(result, slots, logging) {
-    __privateAdd$1(this, _result, void 0);
-    __privateAdd$1(this, _slots, void 0);
-    __privateAdd$1(this, _loggingOpts, void 0);
-    __privateSet$1(this, _result, result);
-    __privateSet$1(this, _slots, slots);
-    __privateSet$1(this, _loggingOpts, logging);
+    this.#result = result;
+    this.#slots = slots;
+    this.#loggingOpts = logging;
     if (slots) {
       for (const key of Object.keys(slots)) {
         if (this[key] !== void 0) {
@@ -2533,22 +2498,22 @@ class Slots {
     }
   }
   has(name) {
-    if (!__privateGet$1(this, _slots))
+    if (!this.#slots)
       return false;
-    return Boolean(__privateGet$1(this, _slots)[name]);
+    return Boolean(this.#slots[name]);
   }
   async render(name, args = []) {
-    if (!__privateGet$1(this, _slots) || !this.has(name))
+    if (!this.#slots || !this.has(name))
       return;
-    const scoped = createScopedResult(__privateGet$1(this, _result), ScopeFlags.RenderSlot);
+    const scoped = createScopedResult(this.#result, ScopeFlags.RenderSlot);
     if (!Array.isArray(args)) {
       warn(
-        __privateGet$1(this, _loggingOpts),
+        this.#loggingOpts,
         "Astro.slots.render",
         `Expected second parameter to be an array, received a ${typeof args}. If you're trying to pass an array as a single argument and getting unexpected results, make sure you're passing your array as a item of an array. Ex: Astro.slots.render('default', [["Hello", "World"]])`
       );
     } else if (args.length > 0) {
-      const slotValue = __privateGet$1(this, _slots)[name];
+      const slotValue = this.#slots[name];
       const component = typeof slotValue === "function" ? await slotValue(scoped) : await slotValue;
       const expression = getFunctionExpression(component);
       if (expression) {
@@ -2561,14 +2526,11 @@ class Slots {
         );
       }
     }
-    const content = await renderSlot(scoped, __privateGet$1(this, _slots)[name]);
+    const content = await renderSlot(scoped, this.#slots[name]);
     const outHTML = stringifyChunk(scoped, content);
     return outHTML;
   }
 }
-_result = new WeakMap();
-_slots = new WeakMap();
-_loggingOpts = new WeakMap();
 let renderMarkdown = null;
 function createResult(args) {
   const { markdown, params, pathname, renderers, request, resolve } = args;
@@ -2917,7 +2879,7 @@ function createAPIContext({
     }
   };
 }
-async function call(mod, env, ctx) {
+async function call(mod, env, ctx, logging) {
   var _a, _b;
   const paramsAndPropsResp = await getParamsAndProps({
     mod,
@@ -2949,6 +2911,22 @@ async function call(mod, env, ctx) {
       type: "response",
       response
     };
+  }
+  if (env.ssr && !mod.prerender) {
+    if (response.hasOwnProperty("headers")) {
+      warn(
+        logging,
+        "ssr",
+        "Setting headers is not supported when returning an object. Please return an instance of Response. See https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes for more information."
+      );
+    }
+    if (response.encoding) {
+      warn(
+        logging,
+        "ssr",
+        "`encoding` is ignored in SSR. To return a charset other than UTF-8, please return an instance of Response. See https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes for more information."
+      );
+    }
   }
   return {
     type: "simple",
@@ -3135,52 +3113,27 @@ function deserializeManifest(serializedManifest) {
   };
 }
 
-var __accessCheck = (obj, member, msg) => {
-  if (!member.has(obj))
-    throw TypeError("Cannot " + msg);
-};
-var __privateGet = (obj, member, getter) => {
-  __accessCheck(obj, member, "read from private field");
-  return getter ? getter.call(obj) : member.get(obj);
-};
-var __privateAdd = (obj, member, value) => {
-  if (member.has(obj))
-    throw TypeError("Cannot add the same private member more than once");
-  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-};
-var __privateSet = (obj, member, value, setter) => {
-  __accessCheck(obj, member, "write to private field");
-  setter ? setter.call(obj, value) : member.set(obj, value);
-  return value;
-};
-var __privateMethod = (obj, member, method) => {
-  __accessCheck(obj, member, "access private method");
-  return method;
-};
-var _env, _manifest, _manifestData, _routeDataToRouteInfo, _encoder, _logging, _base, _baseWithoutTrailingSlash, _renderPage, renderPage_fn, _callEndpoint, callEndpoint_fn;
 class App {
+  #env;
+  #manifest;
+  #manifestData;
+  #routeDataToRouteInfo;
+  #encoder = new TextEncoder();
+  #logging = {
+    dest: consoleLogDestination,
+    level: "info"
+  };
+  #base;
+  #baseWithoutTrailingSlash;
   constructor(manifest, streaming = true) {
-    __privateAdd(this, _renderPage);
-    __privateAdd(this, _callEndpoint);
-    __privateAdd(this, _env, void 0);
-    __privateAdd(this, _manifest, void 0);
-    __privateAdd(this, _manifestData, void 0);
-    __privateAdd(this, _routeDataToRouteInfo, void 0);
-    __privateAdd(this, _encoder, new TextEncoder());
-    __privateAdd(this, _logging, {
-      dest: consoleLogDestination,
-      level: "info"
-    });
-    __privateAdd(this, _base, void 0);
-    __privateAdd(this, _baseWithoutTrailingSlash, void 0);
-    __privateSet(this, _manifest, manifest);
-    __privateSet(this, _manifestData, {
+    this.#manifest = manifest;
+    this.#manifestData = {
       routes: manifest.routes.map((route) => route.routeData)
-    });
-    __privateSet(this, _routeDataToRouteInfo, new Map(manifest.routes.map((route) => [route.routeData, route])));
-    __privateSet(this, _env, createEnvironment({
+    };
+    this.#routeDataToRouteInfo = new Map(manifest.routes.map((route) => [route.routeData, route]));
+    this.#env = createEnvironment({
       adapterName: manifest.adapterName,
-      logging: __privateGet(this, _logging),
+      logging: this.#logging,
       markdown: manifest.markdown,
       mode: "production",
       renderers: manifest.renderers,
@@ -3199,33 +3152,33 @@ class App {
           }
         }
       },
-      routeCache: new RouteCache(__privateGet(this, _logging)),
-      site: __privateGet(this, _manifest).site,
+      routeCache: new RouteCache(this.#logging),
+      site: this.#manifest.site,
       ssr: true,
       streaming
-    }));
-    __privateSet(this, _base, __privateGet(this, _manifest).base || "/");
-    __privateSet(this, _baseWithoutTrailingSlash, removeTrailingForwardSlash(__privateGet(this, _base)));
+    });
+    this.#base = this.#manifest.base || "/";
+    this.#baseWithoutTrailingSlash = removeTrailingForwardSlash(this.#base);
   }
   removeBase(pathname) {
-    if (pathname.startsWith(__privateGet(this, _base))) {
-      return pathname.slice(__privateGet(this, _baseWithoutTrailingSlash).length + 1);
+    if (pathname.startsWith(this.#base)) {
+      return pathname.slice(this.#baseWithoutTrailingSlash.length + 1);
     }
     return pathname;
   }
   match(request, { matchNotFound = false } = {}) {
     const url = new URL(request.url);
-    if (__privateGet(this, _manifest).assets.has(url.pathname)) {
+    if (this.#manifest.assets.has(url.pathname)) {
       return void 0;
     }
     let pathname = "/" + this.removeBase(url.pathname);
-    let routeData = matchRoute(pathname, __privateGet(this, _manifestData));
+    let routeData = matchRoute(pathname, this.#manifestData);
     if (routeData) {
       if (routeData.prerender)
         return void 0;
       return routeData;
     } else if (matchNotFound) {
-      return matchRoute("/404", __privateGet(this, _manifestData));
+      return matchRoute("/404", this.#manifestData);
     } else {
       return void 0;
     }
@@ -3248,15 +3201,20 @@ class App {
     if (routeData.route === "/404") {
       defaultStatus = 404;
     }
-    let mod = __privateGet(this, _manifest).pageMap.get(routeData.component);
+    let mod = this.#manifest.pageMap.get(routeData.component);
     if (routeData.type === "page") {
-      let response = await __privateMethod(this, _renderPage, renderPage_fn).call(this, request, routeData, mod, defaultStatus);
+      let response = await this.#renderPage(request, routeData, mod, defaultStatus);
       if (response.status === 500) {
-        const fiveHundredRouteData = matchRoute("/500", __privateGet(this, _manifestData));
+        const fiveHundredRouteData = matchRoute("/500", this.#manifestData);
         if (fiveHundredRouteData) {
-          mod = __privateGet(this, _manifest).pageMap.get(fiveHundredRouteData.component);
+          mod = this.#manifest.pageMap.get(fiveHundredRouteData.component);
           try {
-            let fiveHundredResponse = await __privateMethod(this, _renderPage, renderPage_fn).call(this, request, fiveHundredRouteData, mod, 500);
+            let fiveHundredResponse = await this.#renderPage(
+              request,
+              fiveHundredRouteData,
+              mod,
+              500
+            );
             return fiveHundredResponse;
           } catch {
           }
@@ -3264,7 +3222,7 @@ class App {
       }
       return response;
     } else if (routeData.type === "endpoint") {
-      return __privateMethod(this, _callEndpoint, callEndpoint_fn).call(this, request, routeData, mod, defaultStatus);
+      return this.#callEndpoint(request, routeData, mod, defaultStatus);
     } else {
       throw new Error(`Unsupported route type [${routeData.type}].`);
     }
@@ -3272,96 +3230,86 @@ class App {
   setCookieHeaders(response) {
     return getSetCookiesFromResponse(response);
   }
-}
-_env = new WeakMap();
-_manifest = new WeakMap();
-_manifestData = new WeakMap();
-_routeDataToRouteInfo = new WeakMap();
-_encoder = new WeakMap();
-_logging = new WeakMap();
-_base = new WeakMap();
-_baseWithoutTrailingSlash = new WeakMap();
-_renderPage = new WeakSet();
-renderPage_fn = async function(request, routeData, mod, status = 200) {
-  const url = new URL(request.url);
-  const pathname = "/" + this.removeBase(url.pathname);
-  const info = __privateGet(this, _routeDataToRouteInfo).get(routeData);
-  const links = createLinkStylesheetElementSet(info.links);
-  let scripts = /* @__PURE__ */ new Set();
-  for (const script of info.scripts) {
-    if ("stage" in script) {
-      if (script.stage === "head-inline") {
-        scripts.add({
-          props: {},
-          children: script.children
-        });
+  async #renderPage(request, routeData, mod, status = 200) {
+    const url = new URL(request.url);
+    const pathname = "/" + this.removeBase(url.pathname);
+    const info = this.#routeDataToRouteInfo.get(routeData);
+    const links = createLinkStylesheetElementSet(info.links);
+    let scripts = /* @__PURE__ */ new Set();
+    for (const script of info.scripts) {
+      if ("stage" in script) {
+        if (script.stage === "head-inline") {
+          scripts.add({
+            props: {},
+            children: script.children
+          });
+        }
+      } else {
+        scripts.add(createModuleScriptElement(script));
       }
-    } else {
-      scripts.add(createModuleScriptElement(script));
+    }
+    try {
+      const ctx = createRenderContext({
+        request,
+        origin: url.origin,
+        pathname,
+        propagation: this.#manifest.propagation,
+        scripts,
+        links,
+        route: routeData,
+        status
+      });
+      const response = await renderPage(mod, ctx, this.#env);
+      return response;
+    } catch (err) {
+      error(this.#logging, "ssr", err.stack || err.message || String(err));
+      return new Response(null, {
+        status: 500,
+        statusText: "Internal server error"
+      });
     }
   }
-  try {
+  async #callEndpoint(request, routeData, mod, status = 200) {
+    const url = new URL(request.url);
+    const pathname = "/" + this.removeBase(url.pathname);
+    const handler = mod;
     const ctx = createRenderContext({
       request,
       origin: url.origin,
       pathname,
-      propagation: __privateGet(this, _manifest).propagation,
-      scripts,
-      links,
       route: routeData,
       status
     });
-    const response = await renderPage(mod, ctx, __privateGet(this, _env));
-    return response;
-  } catch (err) {
-    error(__privateGet(this, _logging), "ssr", err.stack || err.message || String(err));
-    return new Response(null, {
-      status: 500,
-      statusText: "Internal server error"
-    });
-  }
-};
-_callEndpoint = new WeakSet();
-callEndpoint_fn = async function(request, routeData, mod, status = 200) {
-  const url = new URL(request.url);
-  const pathname = "/" + this.removeBase(url.pathname);
-  const handler = mod;
-  const ctx = createRenderContext({
-    request,
-    origin: url.origin,
-    pathname,
-    route: routeData,
-    status
-  });
-  const result = await call(handler, __privateGet(this, _env), ctx);
-  if (result.type === "response") {
-    if (result.response.headers.get("X-Astro-Response") === "Not-Found") {
-      const fourOhFourRequest = new Request(new URL("/404", request.url));
-      const fourOhFourRouteData = this.match(fourOhFourRequest);
-      if (fourOhFourRouteData) {
-        return this.render(fourOhFourRequest, fourOhFourRouteData);
+    const result = await call(handler, this.#env, ctx, this.#logging);
+    if (result.type === "response") {
+      if (result.response.headers.get("X-Astro-Response") === "Not-Found") {
+        const fourOhFourRequest = new Request(new URL("/404", request.url));
+        const fourOhFourRouteData = this.match(fourOhFourRequest);
+        if (fourOhFourRouteData) {
+          return this.render(fourOhFourRequest, fourOhFourRouteData);
+        }
       }
-    }
-    return result.response;
-  } else {
-    const body = result.body;
-    const headers = new Headers();
-    const mimeType = mime.getType(url.pathname);
-    if (mimeType) {
-      headers.set("Content-Type", `${mimeType};charset=utf-8`);
+      return result.response;
     } else {
-      headers.set("Content-Type", "text/plain;charset=utf-8");
+      const body = result.body;
+      const headers = new Headers();
+      const mimeType = mime.getType(url.pathname);
+      if (mimeType) {
+        headers.set("Content-Type", `${mimeType};charset=utf-8`);
+      } else {
+        headers.set("Content-Type", "text/plain;charset=utf-8");
+      }
+      const bytes = this.#encoder.encode(body);
+      headers.set("Content-Length", bytes.byteLength.toString());
+      const response = new Response(bytes, {
+        status: 200,
+        headers
+      });
+      attachToResponse(response, result.cookies);
+      return response;
     }
-    const bytes = __privateGet(this, _encoder).encode(body);
-    headers.set("Content-Length", bytes.byteLength.toString());
-    const response = new Response(bytes, {
-      status: 200,
-      headers
-    });
-    attachToResponse(response, result.cookies);
-    return response;
   }
-};
+}
 
 const slotName = (str) => str.trim().replace(/[-_]([a-z])/g, (_, w) => w.toUpperCase());
 async function check(Component, props, { default: children = null, ...slotted } = {}) {
