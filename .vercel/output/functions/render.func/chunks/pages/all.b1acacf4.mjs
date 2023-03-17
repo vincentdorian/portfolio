@@ -501,10 +501,6 @@ const $$Layout = createComponent$1(async ($$result, $$props, $$slots) => {
       name: "Projects",
       href: "/projects"
     }
-    /* {
-      name: "Contact",
-      href: "/contact"
-    } */
   ];
   return renderTemplate`<html lang="en">
   <head>
@@ -535,7 +531,7 @@ const $$Layout = createComponent$1(async ($$result, $$props, $$slots) => {
   )}
         </nav>
     </header>
-    <main class="text-gray-800 mt-6">
+    <main class="text-gray-800 mt-6 mb-5">
       <h1 class="text-3xl sm:text-4xl font-light text-gray-900">${title} </h1>
         ${renderSlot($$result, $$slots["default"])}
         </main>
@@ -776,16 +772,31 @@ const $$Astro = createAstro("https://vincentdorian.me");
 const $$Index = createComponent$1(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
+  const response = await fetch(
+    "https://dev.to/api/articles?username=vincentdorian"
+  );
+  const devToBlogPosts = await response.json();
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Blog" }, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<section>
     <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
       <p>
         I've recently begun to write some blog posts and am planning to become
-        more active in the dev community. You can view my posts on Dev.to.
+        more active in the dev community. Here you can view a list of my posts on Dev.to.
       </p>
     </div>
-    <div class="mt-7 flex flex-col sm:flex-row gap-3">
-      ${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "https://dev.to/vincentdorian" }, { "default": ($$result3) => renderTemplate`Read on DEV.TO` })}
+
+    <div class="mt-5">
+      <ul>
+        ${devToBlogPosts.map((post) => renderTemplate`<li>
+        <a${addAttribute(post.url, "href")} class="my-1 py-2 w-full block text-gray-700 hover:text-gray-900">
+          <span class="tracking-wide block">${post.title}</span>
+          <span class="tracking-wide font-light text-sm block">
+            ${new Date(post.published_at).toDateString()}
+            </span>
+          </a>
+        </li>`)}
+      </ul>
     </div>
+    
   </section>` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/blog/index.astro");
 
