@@ -3342,4 +3342,4 @@ var server_default = {
   renderToStaticMarkup
 };
 
-export { App as A, Fragment as F, __astro_tag_component__ as _, createComponent as a, addAttribute as b, createAstro as c, renderHead as d, renderSlot as e, createVNode as f, renderComponent as g, deserializeManifest as h, maybeRenderHead as m, renderTemplate as r, server_default as s };
+export { App as A, Fragment as F, __astro_tag_component__ as _, createComponent as a, addAttribute as b, createAstro as c, renderSlot as d, renderHead as e, createVNode as f, renderComponent as g, deserializeManifest as h, maybeRenderHead as m, renderTemplate as r, server_default as s };
