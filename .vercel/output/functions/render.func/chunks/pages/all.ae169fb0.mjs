@@ -559,11 +559,11 @@ function _createMdxContent$1(props) {
         children: "Javascript"
       }), " and ", createVNode(_components.strong, {
         children: "PHP"
-      }), ", and love building apps with modern rendering frameworks, like ", createVNode(_components.strong, {
-        children: "React, Vue, Svelte and Astro"
+      }), " and am actively building web apps with frameworks, like ", createVNode(_components.strong, {
+        children: "React, Vue, Svelte, Laravel and Astro"
       }), "."]
     }), "\n", createVNode(_components.p, {
-      children: "I am always happy to connect, so if you would like to get in touch you can either write me a DM, or send me an email."
+      children: "I am always happy to connect, so if you would like to get in touch you can either write me a DM, or just leave me message."
     })]
   });
 }
@@ -607,10 +607,10 @@ const $$Index$3 = createComponent$1(async ($$result, $$props, $$slots) => {
 		<div class="mt-5 prose prose-p:font-light prose-strong:font-normal">
 			${renderComponent($$result2, "Content", Content$1, {})}
 		</div>
-		<div class="mt-7 flex flex-col sm:flex-row gap-3">
+		<div class="mt-7 flex flex-row gap-3">
 			${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "https://www.linkedin.com/in/vincent-schilling-758246251/" }, { "default": ($$result3) => renderTemplate`Connect on LinkedIn` })}
 
-			${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "/contact" }, { "default": ($$result3) => renderTemplate`Leave me a message` })}
+			${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "/contact" }, { "default": ($$result3) => renderTemplate`Leave a message` })}
 		</div>
 	</section>` })}`;
 }, "/Users/vincentschilling/Projects/portfolio/src/pages/index.astro");
@@ -632,8 +632,7 @@ const $$Index$2 = createComponent$1(async ($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Projects" }, { "default": ($$result2) => renderTemplate`${maybeRenderHead($$result2)}<section>
     <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
       <p>
-        Soon you will be able to view some of my projects here. Until then you
-        can have a look at my GitHub.
+        Soon you will be able to view some of my projects here. For now you can find them on my GitHub.
       </p>
     </div>
     <div class="mt-7 flex flex-col sm:flex-row gap-3">
@@ -699,13 +698,13 @@ function _createMdxContent(props) {
   }, props.components);
   return createVNode(Fragment, {
     children: [createVNode(_components.p, {
-      children: "I started my career as a web developer back in 2021 and my job has become my hobby and passion.\nThrough my design and engineering background, I am a good generalist, always able to look at problems from different angles."
+      children: "I got into web development back in 2021, since then my job has become my hobby and passion.\nThrough my design and engineering background, I am a good generalist, always able to approach problems from different perspectives."
     }), "\n", createVNode(_components.p, {
       children: ["Apart from web development I am interested in the topics ", createVNode(_components.strong, {
-        children: "virtual worlds, AI, blockchain, web3"
-      }), " and many more."]
+        children: "web3, blockchain, virtual worlds and AI."
+      })]
     }), "\n", createVNode(_components.p, {
-      children: "When I am not coding, you can probably catch me riding my gravel bike, reading a book or eating."
+      children: "I also love doing sports, especially cycling."
     })]
   });
 }
@@ -750,7 +749,7 @@ const $$About = createComponent$1(async ($$result, $$props, $$slots) => {
 			${renderComponent($$result2, "Content", Content, {})}
 		</div>
 
-        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <div class="mt-7 flex flex-row gap-3">
 			${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "https://twitter.com/vdoedev" }, { "default": ($$result3) => renderTemplate`Follow me on Twitter` })}
 
 			${renderComponent($$result2, "LinkBox", $$LinkBox, { "href": "https://www.strava.com/athletes/106008249" }, { "default": ($$result3) => renderTemplate`Connect on Strava` })}

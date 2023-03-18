@@ -91,21 +91,20 @@ ${qn(p,u)}`),N=await Qi({renderer:g,result:e,astroId:ie,props:p,attrs:j},u),oe=[
    
   </body></html>`},"/Users/vincentschilling/Projects/portfolio/src/layouts/Layout.astro"),ya={};function Ca(){return[]}function da(e){let t=Object.assign({p:"p",strong:"strong"},e.components);return k(pe,{children:[k(t.p,{children:["Hi, I\u2019m Vincent. I\u2019m a ",k(t.strong,{children:"web developer"}),` that loves to create and explore.
 I am always enthusiasthic about new technologies, trying to shape the future of the web.`]}),`
-`,k(t.p,{children:["I have a well-founded proficiencies with ",k(t.strong,{children:"Javascript"})," and ",k(t.strong,{children:"PHP"}),", and love building apps with modern rendering frameworks, like ",k(t.strong,{children:"React, Vue, Svelte and Astro"}),"."]}),`
-`,k(t.p,{children:"I am always happy to connect, so if you would like to get in touch you can either write me a DM, or send me an email."})]})}function ba(e={}){let{wrapper:t}=e.components||{};return t?k(t,{...e,children:k(da,{...e})}):da(e)}De(Ca,"astro:jsx");De(ba,"astro:jsx");var Ar="/home",Sr="/Users/vincentschilling/Projects/portfolio/src/pages/home.mdx",et=(e={})=>ba({...e,components:{Fragment:pe,...e.components}});et[Symbol.for("astro.needsHeadRendering")]=!Boolean(ya.layout);var Ea=Object.freeze(Object.defineProperty({__proto__:null,Content:et,default:et,file:Sr,frontmatter:ya,getHeadings:Ca,url:Ar},Symbol.toStringTag,{value:"Module"})),Br=G("https://vincentdorian.me"),wa=W(async(e,t,a)=>{let n=e.createAstro(Br,t,a);return n.self=wa,S`${R(e,"Layout",fe,{title:"Vincent Dorian"},{default:i=>S`${K(i)}<section>
+`,k(t.p,{children:["I have a well-founded proficiencies with ",k(t.strong,{children:"Javascript"})," and ",k(t.strong,{children:"PHP"})," and am actively building web apps with frameworks, like ",k(t.strong,{children:"React, Vue, Svelte, Laravel and Astro"}),"."]}),`
+`,k(t.p,{children:"I am always happy to connect, so if you would like to get in touch you can either write me a DM, or just leave me message."})]})}function ba(e={}){let{wrapper:t}=e.components||{};return t?k(t,{...e,children:k(da,{...e})}):da(e)}De(Ca,"astro:jsx");De(ba,"astro:jsx");var Ar="/home",Sr="/Users/vincentschilling/Projects/portfolio/src/pages/home.mdx",et=(e={})=>ba({...e,components:{Fragment:pe,...e.components}});et[Symbol.for("astro.needsHeadRendering")]=!Boolean(ya.layout);var Ea=Object.freeze(Object.defineProperty({__proto__:null,Content:et,default:et,file:Sr,frontmatter:ya,getHeadings:Ca,url:Ar},Symbol.toStringTag,{value:"Module"})),Br=G("https://vincentdorian.me"),wa=W(async(e,t,a)=>{let n=e.createAstro(Br,t,a);return n.self=wa,S`${R(e,"Layout",fe,{title:"Vincent Dorian"},{default:i=>S`${K(i)}<section>
 		<div class="mt-5 prose prose-p:font-light prose-strong:font-normal">
 			${R(i,"Content",et,{})}
 		</div>
-		<div class="mt-7 flex flex-col sm:flex-row gap-3">
+		<div class="mt-7 flex flex-row gap-3">
 			${R(i,"LinkBox",me,{href:"https://www.linkedin.com/in/vincent-schilling-758246251/"},{default:o=>S`Connect on LinkedIn`})}
 
-			${R(i,"LinkBox",me,{href:"/contact"},{default:o=>S`Leave me a message`})}
+			${R(i,"LinkBox",me,{href:"/contact"},{default:o=>S`Leave a message`})}
 		</div>
 	</section>`})}`},"/Users/vincentschilling/Projects/portfolio/src/pages/index.astro"),kr="/Users/vincentschilling/Projects/portfolio/src/pages/index.astro",jr="",Aa=Object.freeze(Object.defineProperty({__proto__:null,default:wa,file:kr,url:jr},Symbol.toStringTag,{value:"Module"})),$r=G("https://vincentdorian.me"),Sa=W(async(e,t,a)=>{let n=e.createAstro($r,t,a);return n.self=Sa,S`${R(e,"Layout",fe,{title:"Projects"},{default:i=>S`${K(i)}<section>
     <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
       <p>
-        Soon you will be able to view some of my projects here. Until then you
-        can have a look at my GitHub.
+        Soon you will be able to view some of my projects here. For now you can find them on my GitHub.
       </p>
     </div>
     <div class="mt-7 flex flex-col sm:flex-row gap-3">
@@ -121,15 +120,15 @@ I am always enthusiasthic about new technologies, trying to shape the future of 
       </p>
     </div>
     ${R(i,"ContactForm",ka,{"client:idle":!0,"client:component-hydration":"idle","client:component-path":"/Users/vincentschilling/Projects/portfolio/src/components/ContactForm","client:component-export":"default"})}
-  </section>`})}`},"/Users/vincentschilling/Projects/portfolio/src/pages/contact/index.astro"),zr="/Users/vincentschilling/Projects/portfolio/src/pages/contact/index.astro",Ir="/contact",$a=Object.freeze(Object.defineProperty({__proto__:null,default:ja,file:zr,url:Ir},Symbol.toStringTag,{value:"Module"})),Ra={};function Pa(){return[]}function ma(e){let t=Object.assign({p:"p",strong:"strong"},e.components);return k(pe,{children:[k(t.p,{children:`I started my career as a web developer back in 2021 and my job has become my hobby and passion.
-Through my design and engineering background, I am a good generalist, always able to look at problems from different angles.`}),`
-`,k(t.p,{children:["Apart from web development I am interested in the topics ",k(t.strong,{children:"virtual worlds, AI, blockchain, web3"})," and many more."]}),`
-`,k(t.p,{children:"When I am not coding, you can probably catch me riding my gravel bike, reading a book or eating."})]})}function _a(e={}){let{wrapper:t}=e.components||{};return t?k(t,{...e,children:k(ma,{...e})}):ma(e)}De(Pa,"astro:jsx");De(_a,"astro:jsx");var Mr="/about",Hr="/Users/vincentschilling/Projects/portfolio/src/pages/about.mdx",tt=(e={})=>_a({...e,components:{Fragment:pe,...e.components}});tt[Symbol.for("astro.needsHeadRendering")]=!Boolean(Ra.layout);var Oa=Object.freeze(Object.defineProperty({__proto__:null,Content:tt,default:tt,file:Hr,frontmatter:Ra,getHeadings:Pa,url:Mr},Symbol.toStringTag,{value:"Module"})),Lr=G("https://vincentdorian.me"),Ta=W(async(e,t,a)=>{let n=e.createAstro(Lr,t,a);return n.self=Ta,S`${R(e,"Layout",fe,{title:"About"},{default:i=>S`${K(i)}<section>
+  </section>`})}`},"/Users/vincentschilling/Projects/portfolio/src/pages/contact/index.astro"),zr="/Users/vincentschilling/Projects/portfolio/src/pages/contact/index.astro",Ir="/contact",$a=Object.freeze(Object.defineProperty({__proto__:null,default:ja,file:zr,url:Ir},Symbol.toStringTag,{value:"Module"})),Ra={};function Pa(){return[]}function ma(e){let t=Object.assign({p:"p",strong:"strong"},e.components);return k(pe,{children:[k(t.p,{children:`I got into web development back in 2021, since then my job has become my hobby and passion.
+Through my design and engineering background, I am a good generalist, always able to approach problems from different perspectives.`}),`
+`,k(t.p,{children:["Apart from web development I am interested in the topics ",k(t.strong,{children:"web3, blockchain, virtual worlds and AI."})]}),`
+`,k(t.p,{children:"I also love doing sports, especially cycling."})]})}function _a(e={}){let{wrapper:t}=e.components||{};return t?k(t,{...e,children:k(ma,{...e})}):ma(e)}De(Pa,"astro:jsx");De(_a,"astro:jsx");var Mr="/about",Hr="/Users/vincentschilling/Projects/portfolio/src/pages/about.mdx",tt=(e={})=>_a({...e,components:{Fragment:pe,...e.components}});tt[Symbol.for("astro.needsHeadRendering")]=!Boolean(Ra.layout);var Oa=Object.freeze(Object.defineProperty({__proto__:null,Content:tt,default:tt,file:Hr,frontmatter:Ra,getHeadings:Pa,url:Mr},Symbol.toStringTag,{value:"Module"})),Lr=G("https://vincentdorian.me"),Ta=W(async(e,t,a)=>{let n=e.createAstro(Lr,t,a);return n.self=Ta,S`${R(e,"Layout",fe,{title:"About"},{default:i=>S`${K(i)}<section>
 		<div class="mt-5 prose prose-p:font-light prose-strong:font-normal">
 			${R(i,"Content",tt,{})}
 		</div>
 
-        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <div class="mt-7 flex flex-row gap-3">
 			${R(i,"LinkBox",me,{href:"https://twitter.com/vdoedev"},{default:o=>S`Follow me on Twitter`})}
 
 			${R(i,"LinkBox",me,{href:"https://www.strava.com/athletes/106008249"},{default:o=>S`Connect on Strava`})}
