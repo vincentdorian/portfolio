@@ -7,10 +7,10 @@ const response = await fetch(
 );
 
 const devToBlogPosts: Array<{
-  published_at: string
-  tag_list: Array<string>
-  title: string
-  url: string
+  published_at: string;
+  tag_list: Array<string>;
+  title: string;
+  url: string;
 }> = await response.json();
 ---
 
@@ -18,25 +18,47 @@ const devToBlogPosts: Array<{
   <section>
     <div class="prose prose-p:font-light prose-strong:font-normal mt-5">
       <p>
-        I've recently begun to write some blog posts and am planning to become
-        more active in the dev community. Here you can view a list of my posts on Dev.to.
+        I've recently started to write some blog posts and am planning to become
+        more active in the dev community. Here you can view a list of my posts
+        on Dev.to.
       </p>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-5 max-w-2xl">
       <ul>
-        {devToBlogPosts.map((post) => <li>
-        <a href={post.url} class="my-1 py-2 w-full block text-gray-700 hover:text-gray-900">
-          <span class="tracking-wide block">{post.title}</span>
-          <span class="tracking-wide font-light text-sm block">
-            {
-              new Date(post.published_at).toDateString()
-            }
-            </span>
-          </a>
-        </li>)}
+        {
+          devToBlogPosts.map((post) => (
+            <li class="my-3 py-2 w-full block text-gray-700 hover:text-gray-900">
+              <span class="tracking-wide font-light text-sm block border-l-gray-700">
+                {new Date(post.published_at).toDateString()}
+              </span>
+              <span class="tracking-wide block">{post.title}</span>
+
+              <a
+                class={`relative w-fit block after:block after:content-[''] after:absolute after:h-px after:bg-black after:w-full tracking-wide font-light after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left`}
+                href={post.url}
+              >
+             <span class="flex flex-row items-center">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 mr-1 text-gray-800 group-hover:text-gray-200 group-active:text-gray-200"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                  />
+                </svg>
+                Read more</span>
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
-    
   </section>
 </Layout>
